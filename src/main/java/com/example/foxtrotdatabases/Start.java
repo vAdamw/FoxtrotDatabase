@@ -3,14 +3,13 @@ package com.example.foxtrotdatabases;
 import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
 import javafx.scene.control.MenuButton;
 import javafx.scene.control.MenuItem;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 
-public class StartProgram extends Application {
+public class Start extends Application {
     BorderPane layout = new BorderPane();
 
     @Override
