@@ -3,6 +3,7 @@ package com.example.foxtrotdatabases;
 import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.MenuButton;
 import javafx.scene.control.MenuItem;
 import javafx.scene.layout.BorderPane;
@@ -21,11 +22,17 @@ public class Start extends Application {
         MenuButton games = createMenuButton("Games");
         MenuButton matches = createMenuButton("Matches");
 
+        //Samma meny fast med vanliga Buttons
+        Button player1 = createButtonForMenu("Players");
+        Button teams1 = createButtonForMenu("Teams");
+        Button games1 = createButtonForMenu("Games");
+        Button matches1 = createButtonForMenu("Matches");
 
         /*I den övre delen av bordePane kallas en metod som tar in MenuItems, placerar ut dem i en HBox
          * och returnerar sedan HBoxen. Det läggs alltså till en färdig HBox i den övre delen av layouten
         */
-        layout.setTop(createMenuHBox(player, teams, games, matches));
+        layout.setTop(createMenuHBox(player1, teams1, games1, matches1));
+        //layout.setTop(createMenuHBox(player, teams, games, matches));
 
         //Skapar en scene genom en metod som returnerar en scene
         stage.setScene(createStartScene());
@@ -52,10 +59,29 @@ public class Start extends Application {
         return menuButton;
     }
 
+    //Samma menyknapp fast med Button istället
+    public Button createButtonForMenu(String title){
+        Button menuButton = new Button(title);
+        menuButton.setMinSize(90, 30);
+        menuButton.getStyleClass().add("button");
+        menuButton.setOnMouseEntered(e -> menuButton.getStyleClass().add("buttonWhenHovering"));
+        menuButton.setOnMouseExited(e -> menuButton.getStyleClass().remove("buttonWhenHovering"));
+        menuButton.setPadding(new Insets(20, 60, 20, 60));
+        return menuButton;
+    }
+
 
 
     //Tar in MenuButtons, lägger till dem i en HBox, sätter utrymmet mellan menyrutorna och returnerar den färdiga HBoxen
     public HBox createMenuHBox(MenuButton players, MenuButton teams, MenuButton games, MenuButton matches){
+        HBox MenuHBox = new HBox(players, teams, games, matches);
+        MenuHBox.setSpacing(30);
+        return MenuHBox;
+    }
+
+
+    //Med vanliga Buttons istället
+    public HBox createMenuHBox(Button players, Button teams, Button games, Button matches){
         HBox MenuHBox = new HBox(players, teams, games, matches);
         MenuHBox.setSpacing(30);
         return MenuHBox;

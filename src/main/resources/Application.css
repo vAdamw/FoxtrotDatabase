@@ -2,6 +2,14 @@
     -fx-font-size: 25;
     -fx-background-color: transparent;
 }
+
+.buttonWhenHovering{
+    -fx-text-fill: "grey";
+}
+.button{
+    -fx-font-size: 25;
+    -fx-background-color: transparent;
+}
 .menu-item{
      -fx-font-size: 20;
      -fx-padding: 0 60 0 0;
