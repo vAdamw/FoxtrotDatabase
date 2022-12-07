@@ -1,4 +1,4 @@
-package com.example.foxtrotdatabases;
+package com.example.foxtrotdatabases.Games;
 
 import javafx.scene.Scene;
 import javafx.scene.control.Button;

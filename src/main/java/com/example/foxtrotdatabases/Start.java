@@ -1,5 +1,9 @@
 package com.example.foxtrotdatabases;
 
+import com.example.foxtrotdatabases.Games.GameSceneFx;
+import com.example.foxtrotdatabases.Matches.MatchSceneFx;
+import com.example.foxtrotdatabases.Players.PlayerSceneFx;
+import com.example.foxtrotdatabases.Teams.TeamSceneFx;
 import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
