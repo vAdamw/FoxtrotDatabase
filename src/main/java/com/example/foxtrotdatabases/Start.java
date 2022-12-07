@@ -48,6 +48,7 @@ public class Start extends Application {
 
     }
 
+
     //Samma menyknapp fast med Button istället
     public Button createButtonForMenu(String title){
         Button menuButton = new Button(title);
