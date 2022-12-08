@@ -12,6 +12,10 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
+import java.sql.SQLException;
+
 
 public class Start extends Application {
     BorderPane layout = new BorderPane();
@@ -128,5 +132,8 @@ public class Start extends Application {
         return backToStart;
     }
 
-    public static void main(String[] args){launch();}
+    public static void main(String[] args) throws SQLException {
+        launch();
+    }
+    public static EntityManagerFactory ENTITY_MANAGER_FACTORY = Persistence.createEntityManagerFactory("hibernate");
 }

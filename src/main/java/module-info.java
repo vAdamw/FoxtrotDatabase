@@ -1,6 +1,8 @@
 module com.example.foxtrotdatabases {
     requires javafx.controls;
     requires javafx.fxml;
+    requires java.persistence;
+    requires java.sql;
 
 
     opens com.example.foxtrotdatabases to javafx.fxml;
