@@ -146,11 +146,9 @@ public class TeamController {
             transaction = entityManager.getTransaction();
             transaction.begin();
             Teams theTeamToUpdate = entityManager.find(Teams.class, theTeam.getTeamId());
-            theTeamToUpdate.setTeamId(theTeam.getTeamId());
             theTeamToUpdate.setTeamName(theTeam.getTeamName());
-            theTeamToUpdate.setGameId(theTeamToUpdate.getGameId());
+            theTeamToUpdate.setGameId(theTeam.getGameId());
             entityManager.merge(theTeamToUpdate);
-
             // Commit the changes
             transaction.commit();
         } catch (Exception e) {

@@ -22,12 +22,16 @@ public class Teams {
     public Teams() {
     }
 
-    public Teams(String teamName) {
+
+
+    public Teams(String teamName,int gameId) {
         this.teamName = teamName;
+        this.gameId = gameId;
     }
 
-    public Teams(int teamId, int gameId) {
+    public Teams(int teamId, String teamName,int gameId) {
         this.teamId = teamId;
+        this.teamName = teamName;
         this.gameId = gameId;
     }
 
