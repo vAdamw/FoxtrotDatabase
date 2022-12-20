@@ -1,21 +1,20 @@
 package com.example.foxtrotdatabases.Matches;
 
 import javax.persistence.*;
-import java.util.List;
 
 @Entity
-@Table(name = "matches")
-public class Matches {
+@Table(name = "team_matches")
+public class TeamMatches {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "match_id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int matchId;
     @Column(name = "team1_id")
     private int team1Id;
     @Column(name = "team2_id")
     private int team2Id;
-    @Column(name = "date")
-    private String date;
+    @Column(name = "match_date")
+    private String matchDate;
     @Column(name = "score_team1")
     private int scoreTeam1;
     @Column(name = "score_team2")
@@ -23,13 +22,21 @@ public class Matches {
     @Column(name = "game_id")
     private int gameId;
 
-    public Matches(){}
+    public TeamMatches(){}
+    public TeamMatches(int team1Id, int team2Id, String matchDate, int scoreTeam1, int scoreTeam2, int gameId) {
+        this.team1Id = team1Id;
+        this.team2Id = team2Id;
+        this. matchDate= matchDate;
+        this.scoreTeam1 = scoreTeam1;
+        this.scoreTeam2 = scoreTeam2;
+        this.gameId = gameId;
+    }
 
-    public Matches(int matchId, int team1Id, int team2Id, String date, int scoreTeam1, int scoreTeam2, int gameId) {
+    public TeamMatches(int matchId, int team1Id, int team2Id, String matchDate, int scoreTeam1, int scoreTeam2, int gameId) {
         this.matchId = matchId;
         this.team1Id = team1Id;
         this.team2Id = team2Id;
-        this.date = date;
+        this.matchDate = matchDate;
         this.scoreTeam1 = scoreTeam1;
         this.scoreTeam2 = scoreTeam2;
         this.gameId = gameId;
@@ -59,12 +66,12 @@ public class Matches {
         this.team2Id = team2Id;
     }
 
-    public String getDate() {
-        return date;
+    public String getMatchDate() {
+        return matchDate;
     }
 
-    public void setDate(String date) {
-        this.date = date;
+    public void set(String matchDate) {
+        this.matchDate = matchDate;
     }
 
     public int getScoreTeam1() {

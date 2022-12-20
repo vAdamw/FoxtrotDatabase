@@ -3,7 +3,8 @@ module com.example.foxtrotdatabases {
     requires javafx.fxml;
     requires java.persistence;
     requires java.sql;
-
+    requires hibernate.entitymanager;
+    requires org.hibernate.orm.core;
 
     opens com.example.foxtrotdatabases to javafx.fxml;
     exports com.example.foxtrotdatabases;
@@ -14,5 +15,5 @@ module com.example.foxtrotdatabases {
     exports com.example.foxtrotdatabases.Players;
     opens com.example.foxtrotdatabases.Players to javafx.fxml;
     exports com.example.foxtrotdatabases.Matches;
-    opens com.example.foxtrotdatabases.Matches to javafx.fxml;
+    opens com.example.foxtrotdatabases.Matches to javafx.fxml, org.hibernate.orm.core;
 }

@@ -14,6 +14,7 @@ import javafx.stage.Stage;
 
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
+import javax.persistence.PersistenceUnit;
 import java.sql.SQLException;
 
 
@@ -92,7 +93,7 @@ public class Start extends Application {
         try {
             scene.getStylesheets().add(getClass().getClassLoader().getResource("Application.css").toExternalForm());
         }catch(Exception e){
-            System.out.println(e);
+            e.printStackTrace();
         }
         return scene;
     }
@@ -118,9 +119,9 @@ public class Start extends Application {
             sceneForPlayer.getStylesheets().add(getClass().getClassLoader().getResource("Application.css").toExternalForm());
             sceneForTeam.getStylesheets().add(getClass().getClassLoader().getResource("Application.css").toExternalForm());
             sceneForGame.getStylesheets().add(getClass().getClassLoader().getResource("Application.css").toExternalForm());
-            sceneForMatches.getStylesheets().add(getClass().getClassLoader().getResource("Application.css").toExternalForm());
+            //sceneForMatches.getStylesheets().add(getClass().getClassLoader().getResource("Application.css").toExternalForm());
         }catch(Exception e){
-            System.out.println(e);
+            e.printStackTrace();
         }
 
     }
@@ -132,8 +133,9 @@ public class Start extends Application {
         return backToStart;
     }
 
+
     public static void main(String[] args) throws SQLException {
         launch();
     }
-    public static EntityManagerFactory ENTITY_MANAGER_FACTORY = Persistence.createEntityManagerFactory("hibernate");
+
 }
