@@ -78,7 +78,7 @@ public class TeamMenu {
         System.out.println("----------> Visa alla lag <----------");
         System.out.println("Ange Team ID för att ta bort ett lag:");
         for (Teams team : teams) {
-            System.out.println("Team ID: " + team.getTeamId() + "," +" Namn: " + team.getTeamName() + "," + " Game ID: " + team.getGameId());
+            System.out.println("Team ID: " + team.getTeamId() + "," + " Namn: " + team.getTeamName() + "," + " Game ID: " + team.getGameId());
         }
         System.out.print("Ditt val: ");
         Scanner scanner = new Scanner(System.in);
@@ -115,7 +115,6 @@ public class TeamMenu {
         System.out.print("Ange Game ID ");
         String gameIdString = scannerTeamUpdate.nextLine();
         int gameId = Integer.parseInt(gameIdString);
-
 
         theTeamToUpdate.setTeamName(teamName);
         theTeamToUpdate.setGameId(gameId);
