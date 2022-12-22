@@ -1,5 +1,7 @@
 package com.example.foxtrotdatabases.Teams;
 
+import com.example.foxtrotdatabases.Matches.MatchesController;
+
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
@@ -8,7 +10,7 @@ import java.util.List;
 
 public class TeamController {
 
-    EntityManagerFactory entityManagerFactory = TeamStart.ENTITY_MANAGER_FACTORY;
+    EntityManagerFactory entityManagerFactory = MatchesController.ENTITY_MANAGER_FACTORY;
 
     public TeamController() {
     }

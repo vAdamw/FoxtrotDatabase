@@ -22,7 +22,7 @@ import javax.persistence.criteria.CriteriaBuilder;
 
 public class PlayerSceneFx {
 
-    public static EntityManagerFactory ENTITY_MANAGER_FACTORY = Persistence.createEntityManagerFactory("hibernate");
+    //public static EntityManagerFactory ENTITY_MANAGER_FACTORY = Persistence.createEntityManagerFactory("hibernate");
     TextField firstNameInput;
     TextField lastNameInput;
     TextField nickNameInput;

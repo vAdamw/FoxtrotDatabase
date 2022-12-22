@@ -1,12 +1,15 @@
 package com.example.foxtrotdatabases.Players;
 
 
+import com.example.foxtrotdatabases.Matches.MatchesController;
+
 import javax.persistence.*;
 import java.util.List;
 
 public class PlayerController {
 
-    public static EntityManagerFactory ENTITY_MANAGER_FACTORY = Persistence.createEntityManagerFactory("hibernate");
+    //public static EntityManagerFactory ENTITY_MANAGER_FACTORY = Persistence.createEntityManagerFactory("hibernate");
+    EntityManagerFactory ENTITY_MANAGER_FACTORY = MatchesController.ENTITY_MANAGER_FACTORY;
 
     public List<Players> getAllPlayers() {
         EntityManager entityManager = ENTITY_MANAGER_FACTORY.createEntityManager();

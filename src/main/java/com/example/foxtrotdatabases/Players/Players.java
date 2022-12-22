@@ -128,6 +128,7 @@ public class Players {
         this.teamID = teamID;
     }
 
+/*
     @Override
     public String toString() {
         return "Players{" +
@@ -141,6 +142,6 @@ public class Players {
                 ", email='" + email + '\'' +
                 ", teamID=" + teamID +
                 '}';
-    }
+    }*/
 }
 
