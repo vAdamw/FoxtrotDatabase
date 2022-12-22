@@ -383,7 +383,8 @@ public class MatchesMenu {
 
     //Visar alla teams matcher
     public VBox showTeamMatches() {
-        VBox vBox = createTeamMatchColumns(matchesController.getAllTeamMatches());
+        VBox vBox = new VBox();
+        vBox.getChildren().add(createTeamMatchColumns(matchesController.getAllTeamMatches()));
         return vBox;
     }
 
