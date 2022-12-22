@@ -7,7 +7,6 @@ import java.util.List;
 public class MatchesController{
     public static EntityManagerFactory ENTITY_MANAGER_FACTORY = Persistence.createEntityManagerFactory("hibernate");
 
-
     /*----------------------------------------------------------------------------------------------------------------------
      * Team matches
      ----------------------------------------------------------------------------------------------------------------------*/
@@ -134,7 +133,6 @@ public class MatchesController{
     /*----------------------------------------------------------------------------------------------------------------------------
      * Player matches
      -----------------------------------------------------------------------------------------------------------------------------*/
-
 
     public List<PlayerMatches> getAllPlayerMatches(){
 

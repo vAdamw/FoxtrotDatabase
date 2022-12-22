@@ -22,6 +22,8 @@ public class PlayerMatches {
     private int scorePlayer2;
     @Column(name = "game_id")
     private int gameId;
+    @Column(name = "finished")
+    private boolean finished = false;
 
 
     public PlayerMatches(){
@@ -33,6 +35,23 @@ public class PlayerMatches {
         this.scorePlayer1 = scorePlayer1;
         this.scorePlayer2 = scorePlayer2;
         this.gameId = gameId;
+        //Om denna konstruktor med inparameter för score använts så är matchen avslutad
+        finished = true;
+    }
+
+    public PlayerMatches(int player1Id, int player2Id, String matchDate, int gameId){
+        this.player1Id = player1Id;
+        this.player2Id = player2Id;
+        this.matchDate = matchDate;
+        this.gameId = gameId;
+    }
+
+    public PlayerMatches(int matchId, int player1Id, int player2Id, String matchDate, int gameId){
+        this.matchId = matchId;
+        this.player1Id = player1Id;
+        this.player2Id = player2Id;
+        this.matchDate = matchDate;
+        this.gameId = gameId;
     }
 
     public PlayerMatches(int matchId, int player1Id, int player2Id, String matchDate, int scorePlayer1, int scorePlayer2, int gameId){
@@ -43,6 +62,8 @@ public class PlayerMatches {
         this.scorePlayer1 = scorePlayer1;
         this.scorePlayer2 = scorePlayer2;
         this.gameId = gameId;
+        //Om denna konstruktor med inparameter för score använts så är matchen avslutad
+        finished = true;
     }
 
     public int getMatchId() {
@@ -99,5 +120,13 @@ public class PlayerMatches {
 
     public void setGameId(int gameId) {
         this.gameId = gameId;
+    }
+
+    public boolean isFinished() {
+        return finished;
+    }
+
+    public void setFinished(boolean finished) {
+        this.finished = finished;
     }
 }

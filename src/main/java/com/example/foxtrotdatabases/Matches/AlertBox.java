@@ -9,6 +9,7 @@ import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
 public class AlertBox {
+    //En metod som skapar upp en notisruta med meddelande som inparameter i metoden
     public static void showAlertBox(String message){
         Stage stage = new Stage();
         stage.setMinWidth(350);

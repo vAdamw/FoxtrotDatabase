@@ -22,7 +22,7 @@
 }
 
 
-/* Den utkommenterade delen är för att ändra bakgrundsfärg på hela sidan*/
-/*.root{
-    -fx-background-color: "blue";
-}*/
+/*ändrar bakgrundsfärg på hela sidan*/
+.root{
+    -fx-background-color: "lavender";
+}

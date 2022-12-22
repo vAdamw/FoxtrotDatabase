@@ -1,14 +1,17 @@
 package com.example.foxtrotdatabases.Matches;
 
+import com.example.foxtrotdatabases.Teams.Teams;
+
 import javax.persistence.*;
 
 @Entity
 @Table(name = "team_matches")
-public class TeamMatches {
+public class TeamMatches{
     @Id
     @Column(name = "match_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int matchId;
+
     @Column(name = "team1_id")
     private int team1Id;
     @Column(name = "team2_id")
@@ -21,6 +24,22 @@ public class TeamMatches {
     private int scoreTeam2;
     @Column(name = "game_id")
     private int gameId;
+    @Column(name = "finished")
+    private boolean finished;
+
+
+    @OneToOne
+    @JoinColumn(name = "team1_id", insertable = false, updatable = false)
+    private Teams team1;
+    @OneToOne
+    @JoinColumn(name = "team2_id", insertable = false, updatable = false)
+    private Teams team2;
+    @Transient
+    String team1Name;
+    @Transient
+    String team2Name;
+
+
 
     public TeamMatches(){}
     public TeamMatches(int team1Id, int team2Id, String matchDate, int scoreTeam1, int scoreTeam2, int gameId) {
@@ -30,6 +49,8 @@ public class TeamMatches {
         this.scoreTeam1 = scoreTeam1;
         this.scoreTeam2 = scoreTeam2;
         this.gameId = gameId;
+        //Om denna konstruktor med inparameter för score använts så är matchen avslutad
+        finished = true;
     }
 
     public TeamMatches(int matchId, int team1Id, int team2Id, String matchDate, int scoreTeam1, int scoreTeam2, int gameId) {
@@ -40,6 +61,34 @@ public class TeamMatches {
         this.scoreTeam1 = scoreTeam1;
         this.scoreTeam2 = scoreTeam2;
         this.gameId = gameId;
+        //Om denna konstruktor med inparameter för score använts så är matchen avslutad
+        finished = true;
+    }
+    public TeamMatches(int team1Id, int team2Id, String matchDate, int gameId){
+        this.team1Id = team1Id;
+        this.team2Id = team2Id;
+        this.matchDate = matchDate;
+        this.gameId = gameId;
+    }
+    public TeamMatches(int matchId, int team1Id, int team2Id, String matchDate, int gameId){
+        this.matchId = matchId;
+        this.team1Id = team1Id;
+        this.team2Id = team2Id;
+        this.matchDate = matchDate;
+        this.gameId = gameId;
+    }
+
+    public String getTeam1Name(){
+        return team1.getTeamName();
+    }
+    public void setTeam1Name(String team1Name){
+        this.team1Name = team1Name;
+    }
+    public String getTeam2Name(){
+        return team2.getTeamName();
+    }
+    public void setTeam2Name(String team2Name){
+        this.team2Name = team2Name;
     }
 
     public int getMatchId() {
@@ -98,4 +147,31 @@ public class TeamMatches {
         this.gameId = gameId;
     }
 
+    public Teams getTeam1() {
+        return team1;
+    }
+
+    public void setTeam1(Teams team1) {
+        this.team1 = team1;
+    }
+
+    public Teams getTeam2() {
+        return team2;
+    }
+
+    public void setTeam2(Teams team2) {
+        this.team2 = team2;
+    }
+
+    public void setMatchDate(String matchDate) {
+        this.matchDate = matchDate;
+    }
+
+    public boolean isFinished() {
+        return finished;
+    }
+
+    public void setFinished(boolean finished) {
+        this.finished = finished;
+    }
 }

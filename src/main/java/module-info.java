@@ -6,7 +6,7 @@ module com.example.foxtrotdatabases {
     requires hibernate.entitymanager;
     requires org.hibernate.orm.core;
 
-    opens com.example.foxtrotdatabases to javafx.fxml;
+    opens com.example.foxtrotdatabases to javafx.fxml, org.hibernate.orm.core;
     exports com.example.foxtrotdatabases;
     exports com.example.foxtrotdatabases.Teams;
     opens com.example.foxtrotdatabases.Teams to javafx.fxml,org.hibernate.orm.core;

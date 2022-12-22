@@ -11,7 +11,6 @@ import javafx.scene.text.Text;
 
 
 public class MatchSceneFx {
-    MatchesController matchesController = new MatchesController();
     BorderPane borderPane = new BorderPane();
     MatchesMenu matchesMenu = new MatchesMenu(borderPane);
     Start start = new Start();
