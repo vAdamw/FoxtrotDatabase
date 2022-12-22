@@ -1,0 +1,12 @@
+.root {
+    -fx-background-color: linear-gradient(#020024, #053cba, #0540bc, #00cefc, #040044);
+}
+
+.buttonWhenHovering {
+    -fx-text-fill: "red";
+}
+.label
+{
+    -fx-text-fill:white;
+    -fx-font-size:16;
+}

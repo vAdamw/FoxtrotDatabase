@@ -33,7 +33,6 @@ public class Start extends Application {
         //Kodraden nedan är ett exempel på hur vi kan göra så att man behöver logga in innan man kan göra ändringar
         //teams1.setDisable(true);
 
-
         games = createButtonForMenu("Games");
         games.setOnAction(e -> stage.setScene(sceneForGame));
 
@@ -112,7 +111,7 @@ public class Start extends Application {
         //Ger samma information för font m.m. som framsidan hade
         try {
             sceneForPlayer.getStylesheets().add(getClass().getClassLoader().getResource("Application.css").toExternalForm());
-            sceneForTeam.getStylesheets().add(getClass().getClassLoader().getResource("Application.css").toExternalForm());
+           // sceneForTeam.getStylesheets().add(getClass().getClassLoader().getResource("Application.css").toExternalForm());
             sceneForGame.getStylesheets().add(getClass().getClassLoader().getResource("Application.css").toExternalForm());
             sceneForMatches.getStylesheets().add(getClass().getClassLoader().getResource("Application.css").toExternalForm());
         }catch(Exception e){
