@@ -1,5 +1,7 @@
 package com.example.foxtrotdatabases.Matches;
 
+import com.example.foxtrotdatabases.Players.Players;
+
 import javax.persistence.*;
 
 @Entity
@@ -25,6 +27,19 @@ public class PlayerMatches {
     @Column(name = "finished")
     private boolean finished = false;
 
+    @OneToOne
+    @JoinColumn(name = "player1_id", insertable = false, updatable = false)
+    private Players player1;
+
+    @OneToOne
+    @JoinColumn(name = "player2_id", insertable = false, updatable = false)
+    private Players player2;
+
+    @Transient
+    String player1Nickname;
+
+    @Transient
+    String player2Nickname;
 
     public PlayerMatches(){
     }
@@ -64,6 +79,21 @@ public class PlayerMatches {
         this.gameId = gameId;
         //Om denna konstruktor med inparameter för score använts så är matchen avslutad
         finished = true;
+    }
+
+    public String getPlayer1Nickname(){
+        return player1.getNickname();
+    }
+    public void setPlayer1Nickname(String nickname){
+        this.player1Nickname = nickname;
+    }
+
+    public String getPlayer2Nickname(){
+        return player2.getNickname();
+    }
+
+    public void setPlayer2Nickname(String nickname){
+        this.player2Nickname = nickname;
     }
 
     public int getMatchId() {
@@ -128,5 +158,21 @@ public class PlayerMatches {
 
     public void setFinished(boolean finished) {
         this.finished = finished;
+    }
+
+    public Players getPlayer1() {
+        return player1;
+    }
+
+    public void setPlayer1(Players player1) {
+        this.player1 = player1;
+    }
+
+    public Players getPlayer2() {
+        return player2;
+    }
+
+    public void setPlayer2(Players player2) {
+        this.player2 = player2;
     }
 }

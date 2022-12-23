@@ -1,5 +1,7 @@
 package com.example.foxtrotdatabases.Matches;
 
+import com.example.foxtrotdatabases.Players.PlayerController;
+import com.example.foxtrotdatabases.Players.Players;
 import com.example.foxtrotdatabases.Start;
 import com.example.foxtrotdatabases.Teams.TeamController;
 import com.example.foxtrotdatabases.Teams.Teams;
@@ -26,6 +28,7 @@ public class MatchesMenu {
     private int matchTypeController;
     MatchesController matchesController = new MatchesController();
     TeamController teamController = new TeamController();
+    PlayerController playerController = new PlayerController();
     BorderPane borderPane;
     Start start = new Start();
 
@@ -274,8 +277,8 @@ public class MatchesMenu {
         }
     }
 
-    //Visar alla lag för att underlätta skapandet av ny match. Skapar textrutor beroende på om team eller player knappen är markerad
-    //Skapar en knapp som när den trycks hämtar in alla textfields och skickar vidare dem för att skapa en ny match
+    /*Visar alla lag för att underlätta skapandet av ny match. Skapar textrutor beroende på om team eller player knappen är markerad
+      Skapar en knapp som när den trycks hämtar in alla textfields och skickar vidare dem för att skapa en ny match*/
     public VBox createMatch() {
         VBox helpTableVBox = new VBox();
         switch (matchTypeController) {
@@ -283,7 +286,7 @@ public class MatchesMenu {
                 helpTableVBox.getChildren().add(showAllTeams());
                 break;
             case 1:
-                //Sätt in liknande för spelare sen
+                helpTableVBox.getChildren().add(showAllPlayers());
                 break;
         }
 
@@ -353,13 +356,35 @@ public class MatchesMenu {
         return vBox;
     }
 
+    public VBox showAllPlayers(){
+        TableView<Players> playersTableView = new TableView<>();
+        List<Players> playersList = playerController.getAllPlayers();
+        ObservableList<Players> playersObservableList = FXCollections.observableArrayList();
+        playersObservableList.addAll(playersList);
+
+        TableColumn<Players, Integer> playerId = new TableColumn<>("Player ID");
+        playerId.setCellValueFactory(new PropertyValueFactory<>("playerID"));
+
+        TableColumn<Players, String> playerNickname = new TableColumn<>("Player Nickname");
+        playerNickname.setCellValueFactory(new PropertyValueFactory<>("nickname"));
+
+        playersTableView.setItems(playersObservableList);
+        playersTableView.getColumns().addAll(playerId, playerNickname);
+
+        VBox vBox = new VBox(playersTableView);
+        vBox.setMaxSize(700, 150);
+
+        return vBox;
+    }
+
     /*----------------------------------------------------------------------------------------------------------------------
      * Team Matches specifika
      ----------------------------------------------------------------------------------------------------------------------*/
 
     //Visar alla teams matcher
     public VBox showTeamMatches() {
-        VBox vBox = createTeamMatchColumns(matchesController.getAllTeamMatches());
+        VBox vBox = new VBox();
+        vBox.getChildren().add(createTeamMatchColumns(matchesController.getAllTeamMatches()));
         return vBox;
     }
 
@@ -437,14 +462,7 @@ public class MatchesMenu {
       lägger till den hämtade informationen i respektive textfield*/
     public VBox showTeamMatchToUpdate(int matchToUpdate) {
         VBox helpTableVBox = new VBox();
-        switch (matchTypeController) {
-            case 0:
-                helpTableVBox.getChildren().add(showAllTeams());
-                break;
-            case 1:
-                //Sätt in liknande för spelare sen
-                break;
-        }
+        helpTableVBox.getChildren().add(showAllTeams());
 
         List<TeamMatches> updateList = new ArrayList<>();
         updateList.add(matchesController.getTeamMatch(matchToUpdate));
@@ -510,8 +528,14 @@ public class MatchesMenu {
         TableColumn<PlayerMatches, Integer> player1Id = new TableColumn<>("Player1 ID ");
         player1Id.setCellValueFactory(new PropertyValueFactory<>("player1Id"));
 
+        TableColumn<PlayerMatches, String> player1Nickname = new TableColumn<>("Player 1 Nickname");
+        player1Nickname.setCellValueFactory(new PropertyValueFactory<>("player1Nickname"));
+
         TableColumn<PlayerMatches, Integer> player2Id = new TableColumn<>("Player2 ID");
         player2Id.setCellValueFactory(new PropertyValueFactory<>("player2Id"));
+
+        TableColumn<PlayerMatches, String> player2Nickname = new TableColumn<>("Player 2 Nickname");
+        player2Nickname.setCellValueFactory(new PropertyValueFactory<>("player1Nickname"));
 
         TableColumn<PlayerMatches, String> matchDate = new TableColumn<>("Match Date");
         matchDate.setCellValueFactory(new PropertyValueFactory<>("matchDate"));
@@ -529,7 +553,7 @@ public class MatchesMenu {
         finished.setCellValueFactory(new PropertyValueFactory<>("finished"));
 
         tableView.setItems(allMatches);
-        tableView.getColumns().addAll(matchId, player1Id, player2Id, matchDate, scorePlayer1, scorePlayer2, gameId, finished);
+        tableView.getColumns().addAll(matchId,player1Nickname, scorePlayer1, player2Nickname, scorePlayer2, matchDate, finished);
         tableView.setEditable(true);
 
         vBox.getChildren().addAll(tableView);
@@ -563,7 +587,7 @@ public class MatchesMenu {
                 textFieldScorePlayer1, textFieldScorePlayer2, textFieldGameId));
 
 
-        VBox vBox = new VBox(text1, textFieldPlayer1Id, text2, textFieldPlayer2Id, text3, textFieldDate, text4, textFieldScorePlayer1,
+        VBox vBox = new VBox(showAllPlayers(), text1, textFieldPlayer1Id, text2, textFieldPlayer2Id, text3, textFieldDate, text4, textFieldScorePlayer1,
                 text5, textFieldScorePlayer2, text6, textFieldGameId, button);
         return vBox;
     }
