@@ -25,9 +25,9 @@ public class TeamMenu {
     public void teamMenuInput() {
 
         Scanner scanner = new Scanner(System.in);
-        int teamMenyChoice = scanner.nextInt();
+        int teamMenuChoice = scanner.nextInt();
 
-        switch (teamMenyChoice) {
+        switch (teamMenuChoice) {
             case 0:
                 showAllTeam();
                 break;

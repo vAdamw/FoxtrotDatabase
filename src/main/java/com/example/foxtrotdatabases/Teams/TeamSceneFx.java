@@ -11,14 +11,20 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
 public class TeamSceneFx {
+    private TableColumn<Teams, Integer> teamIdColumn = new TableColumn<>("Team ID");
+    private TableColumn<Teams, String> teamNameColumn = new TableColumn<>("Team Name");
+    private TableColumn<Teams, Integer> gameIdColumn = new TableColumn<>("Game ID");
+    BorderPane teamsBorderPane = new BorderPane();
+    TeamController teamController = new TeamController();
 
     public TeamSceneFx() {
     }
 
     public Scene addToTeamScene(Button button) {
 
-        BorderPane teamsBorderPane = new BorderPane();
+
         HBox backButton = new HBox(button);
+
         teamsBorderPane.setCenter(createTeamsTable());
 
         teamsBorderPane.setTop(backButton);
@@ -48,16 +54,44 @@ public class TeamSceneFx {
         gameIdInput.setMinWidth(100);
         gameIdlbl.setLabelFor(gameIdInput);
 
-        Button addTeamButton = new Button("Add");
-        Button deleteTeamButton = new Button("Delete");
-        Button updateTeamButton = new Button("Update");
+        Label teamIdlbl = new Label("Team ID");
+        TextField teamIdInput = new TextField();
 
-        VBox teamsInput = new VBox(teamNamelbl, teamNameInput, gameIdlbl, gameIdInput, addTeamButton, deleteTeamButton, updateTeamButton);
+        teamIdInput.setPromptText("Enter Team ID");
+        teamIdInput.setMinWidth(100);
+        teamIdlbl.setLabelFor(teamIdInput);
+
+        Button addButton = new Button("Add");
+        addButton.setOnAction(e -> addsTeam(teamNameInput,gameIdInput));
+
+        Button deleteButton = new Button("Delete");
+        deleteButton.setOnAction(e ->deleteTeam(gameIdInput));
+
+        Button updateButton = new Button("Update");
+        updateButton.setOnAction(e ->updateTeam(teamNameInput,gameIdInput,teamIdInput));
+
+        VBox teamsInput = new VBox(teamNamelbl, teamNameInput, gameIdlbl, gameIdInput,teamIdlbl,teamIdInput,addButton,deleteButton,updateButton);
         teamsInput.setPadding(new Insets(100, 0, 0, 150));
         teamsInput.setSpacing(5);
 
         return teamsInput;
+    }
 
+    public void addsTeam(TextField teamNameTextField,TextField teamGameIdTextField) {
+        Teams teamsToAdd = new Teams(teamNameTextField.getText(), Integer.valueOf(teamGameIdTextField.getText()));
+        teamController.addTeam(teamsToAdd);
+        teamsBorderPane.setCenter(createTeamsTable());
+    }
+
+    private void updateTeam(TextField teamNameTextField,TextField teamGameIdTextField,TextField teamIdTextfield) {
+        Teams teamsToUpdate = new Teams(Integer.valueOf(teamIdTextfield.getText()),teamNameTextField.getText(), Integer.valueOf(teamGameIdTextField.getText()));
+        teamController.updateTeams(teamsToUpdate);
+        teamsBorderPane.setCenter(createTeamsTable());
+    }
+
+    private void deleteTeam(TextField teamGameIdTextField) {
+        teamController.deleteTeam (Integer.valueOf(teamGameIdTextField.getText()));
+        teamsBorderPane.setCenter(createTeamsTable());
     }
 
     public ObservableList<Teams> getTeams() {
@@ -73,23 +107,18 @@ public class TeamSceneFx {
 
         TableView teamsTable = new TableView<>();
 
-        TableColumn<Teams, Integer> teamIdColumn = new TableColumn<>("Team ID");
         teamIdColumn.setMinWidth(100);
         teamIdColumn.setCellValueFactory(new PropertyValueFactory<Teams, Integer>("teamId"));
 
-        TableColumn<Teams, String> teamNameColumn = new TableColumn<>("Team Name");
         teamNameColumn.setMinWidth(100);
         teamNameColumn.setCellValueFactory(new PropertyValueFactory<Teams, String>("teamName"));
 
-        TableColumn<Teams, Integer> gameIdColumn = new TableColumn<>("Game ID");
         gameIdColumn.setMinWidth(100);
         gameIdColumn.setCellValueFactory(new PropertyValueFactory<Teams, Integer>("gameId"));
 
-        teamsTable.getItems().addAll(getTeams());
-
         teamsTable.getColumns().addAll(teamIdColumn, teamNameColumn, gameIdColumn);
+        teamsTable.getItems().setAll(getTeams());
 
         return teamsTable;
     }
 }
-
