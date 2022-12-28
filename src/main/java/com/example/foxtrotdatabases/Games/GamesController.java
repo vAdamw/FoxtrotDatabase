@@ -2,13 +2,10 @@ package com.example.foxtrotdatabases.Games;
 
 import javax.persistence.*;
 import java.util.List;
-
 public class GamesController {
     EntityManagerFactory entityManagerFactory = GamesStart.ENTITY_MANAGER_FACTORY;
-
     public GamesController(){
     }
-
     public List<Games> getAllGames(){
         EntityManager entityManager = entityManagerFactory.createEntityManager();
         EntityTransaction transaction = null;
@@ -30,7 +27,6 @@ public class GamesController {
         }
         return gamesList;
     }
-
     public Games getGamesById(int theId){
         EntityManager entityManager = entityManagerFactory.createEntityManager();
         EntityTransaction transaction = null;
@@ -50,7 +46,6 @@ public class GamesController {
         entityManager.close();
         return games;
     }
-
     public boolean deleteGames(int GameId){
         EntityManager entityManager = entityManagerFactory.createEntityManager();
         EntityTransaction transaction = null;
@@ -74,30 +69,6 @@ public class GamesController {
         }
         return isSuccess;
     }
-    public boolean otherDeleteGames(int theGameId) {
-        EntityManager entityManager = entityManagerFactory.createEntityManager();
-        EntityTransaction transaction = null;
-        boolean isSuccess = true;
-
-        try{
-            transaction = entityManager.getTransaction();
-            transaction.begin();
-            Query deleteTeamQuery = entityManager.createNativeQuery("DELETE from games WHERE games_id = " + theGameId);
-            deleteTeamQuery.executeUpdate();
-            entityManager.flush();
-            transaction.commit();
-        } catch (Exception e) {
-            if (transaction != null) {
-                transaction.rollback();
-            }
-            e.printStackTrace();
-            isSuccess = false;
-
-        } finally {
-            entityManager.close();
-        }
-        return isSuccess;
-    }
     public boolean updateGames(Games theGame){
         EntityManager entityManager = entityManagerFactory.createEntityManager();
         EntityTransaction transaction = null;
@@ -106,8 +77,8 @@ public class GamesController {
         try {
             transaction = entityManager.getTransaction();
             transaction.begin();
-            Games theGameToUpdate = entityManager.find(Games.class, theGame.getGame_id());
-            theGameToUpdate.setGame_name(theGame.getGame_name());
+            Games theGameToUpdate = entityManager.find(Games.class, theGame.getGameId());
+            theGameToUpdate.setGameName(theGame.getGameName());
             entityManager.merge(theGameToUpdate);
             transaction.commit();
         } catch (Exception e) {
@@ -122,7 +93,6 @@ public class GamesController {
         }
         return isSuccess;
     }
-
     public boolean addGame(Games theGameToAdd) {
         EntityManager entityManager = entityManagerFactory.createEntityManager();
         EntityTransaction transaction = null;

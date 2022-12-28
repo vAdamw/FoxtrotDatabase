@@ -1,33 +1,34 @@
 package com.example.foxtrotdatabases.Games;
 
 import javax.persistence.*;
-
 @Entity
 @Table(name = "Games")
-
 public class Games{
     @Id
     @Column(name ="game_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int game_id;
+    private int gameId;
     @Column(name ="game_name")
-    private String game_name;
+    private String gameName;
     public Games(){
     }
-    public Games(int game_id, String game_name) {
-        this.game_id = game_id;
-        this.game_name = game_name;
+    public Games(String gameName) {
+        this.gameName = gameName;
     }
-    public int getGame_id() {
-        return game_id;
+    public Games(int gameId, String gameName) {
+        this.gameId = gameId;
+        this.gameName = gameName;
     }
-    public void setGame_id(int game_id) {
-        this.game_id = game_id;
+    public int getGameId() {
+        return gameId;
     }
-    public String getGame_name() {
-        return game_name;
+    public void setGameId(int gameId) {
+        this.gameId = gameId;
     }
-    public void setGame_name(String game_name) {
-        this.game_name = game_name;
+    public String getGameName() {
+        return gameName;
+    }
+    public void setGameName(String gameName) {
+        this.gameName = gameName;
     }
 }
