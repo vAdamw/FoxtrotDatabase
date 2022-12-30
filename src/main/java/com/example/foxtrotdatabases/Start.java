@@ -1,9 +1,9 @@
 package com.example.foxtrotdatabases;
 
-import com.example.foxtrotdatabases.Games.GameSceneFx;
 import com.example.foxtrotdatabases.Matches.MatchSceneFx;
 import com.example.foxtrotdatabases.Players.PlayerSceneFx;
 import com.example.foxtrotdatabases.Teams.TeamSceneFx;
+import com.example.foxtrotdatabases.Games.GameSceneFx;
 import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
@@ -105,7 +105,7 @@ public class Start extends Application {
         sceneForTeam = teamSceneFx.addToTeamScene(createBackToStartButton());
 
         GameSceneFx gameSceneFx = new GameSceneFx();
-        sceneForGame = gameSceneFx.addToGameScene(createBackToStartButton());
+        sceneForGame = gameSceneFx.addToGamesScene(createBackToStartButton());
 
         MatchSceneFx matchSceneFx = new MatchSceneFx();
         sceneForMatches = matchSceneFx.addToMatchScene(createBackToStartButton());
@@ -115,7 +115,7 @@ public class Start extends Application {
         try {
             sceneForPlayer.getStylesheets().add(getClass().getClassLoader().getResource("PlayerStyle.css").toExternalForm());
             sceneForTeam.getStylesheets().add(getClass().getClassLoader().getResource("Application.css").toExternalForm());
-            sceneForGame.getStylesheets().add(getClass().getClassLoader().getResource("Application.css").toExternalForm());
+            sceneForGame.getStylesheets().add(getClass().getClassLoader().getResource("GamesStyle.css").toExternalForm());
             //sceneForMatches.getStylesheets().add(getClass().getClassLoader().getResource("Application.css").toExternalForm());
         }catch(Exception e){
             e.printStackTrace();
