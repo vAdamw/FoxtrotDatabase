@@ -23,10 +23,11 @@ public class GamesSceneFX {
         gamesBoarderPane.setTop(backButton);
         gamesBoarderPane.setRight(gameInput());
 
-        HBox hBox = new HBox(button);
+        HBox hBox = new HBox(gamesBoarderPane);
 
-        //        scene.getStylesheets().add(getClass().getClassLoader().getResource("GameSceneFX.css").toExternalForm());
-        return new Scene(hBox, 900, 700);
+        Scene scene = new Scene(hBox, 900, 700);
+        scene.getStylesheets().add(getClass().getClassLoader().getResource("GamesStyle.css").toExternalForm());
+        return scene;
     }
     public VBox gameInput() {
         Label gameName1b1 = new Label("Game Name");
@@ -59,16 +60,16 @@ public class GamesSceneFX {
         return gamesInput;
     }
     public void updateGame(TextField gameNameInputTextField, TextField gameIdInputTextField) {
-        Games gamesToUpdate = new Games(Integer.parseInt(gameIdInputTextField.getText()), gameNameInputTextField.getText());
+        Games gamesToUpdate = new Games(Integer.valueOf(gameIdInputTextField.getText()), gameNameInputTextField.getText());
         gamesController.updateGames(gamesToUpdate);
         gamesBoarderPane.setCenter(createGamesTable());
     }
     public void deleteGame(TextField gameIdInputTextField) {
-        gamesController.deleteGames(Integer.parseInt(gameIdInputTextField.getText()));
+        gamesController.deleteGames(Integer.valueOf(gameIdInputTextField.getText()));
         gamesBoarderPane.setCenter(createGamesTable());
     }
     public void addsGame(TextField gameNameInputTextField, TextField gameIdInputTextField) {
-        Games gamesToAdd = new Games(Integer.parseInt(gameIdInputTextField.getText()), gameNameInputTextField.getText());
+        Games gamesToAdd = new Games(Integer.valueOf(gameIdInputTextField.getText()), gameNameInputTextField.getText());
         gamesController.addGame(gamesToAdd);
         gamesBoarderPane.setCenter(createGamesTable());
     }

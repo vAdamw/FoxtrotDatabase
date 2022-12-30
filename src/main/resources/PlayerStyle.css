@@ -1,0 +1,15 @@
+.root {
+	-fx-background-color: #B8860B;
+	-fx-font-family: Harrington;
+}
+
+.button {
+	-fx-background-color: white;
+
+}
+
+.topMenu {
+	-fx-padding: 5;
+}
+
+.buttonBox {}

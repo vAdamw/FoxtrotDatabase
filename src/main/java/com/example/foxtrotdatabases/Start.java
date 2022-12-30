@@ -100,7 +100,7 @@ public class Start extends Application {
         try {
             sceneForPlayer.getStylesheets().add(getClass().getClassLoader().getResource("Application.css").toExternalForm());
             sceneForTeam.getStylesheets().add(getClass().getClassLoader().getResource("Application.css").toExternalForm());
-            sceneForGame.getStylesheets().add(getClass().getClassLoader().getResource("Application.css").toExternalForm());
+            sceneForGame.getStylesheets().add(getClass().getClassLoader().getResource("GamesStyle.css").toExternalForm());
             sceneForMatches.getStylesheets().add(getClass().getClassLoader().getResource("Application.css").toExternalForm());
         }catch(Exception e){
             System.out.println(e);

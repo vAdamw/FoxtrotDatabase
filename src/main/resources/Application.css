@@ -1,0 +1,28 @@
+.menuButton{
+    -fx-font-size: 25;
+    -fx-background-color: transparent;
+}
+
+.buttonWhenHovering{
+    -fx-text-fill: "grey";
+}
+.buttonWhenClicked{
+    -fx-font-weight: BOLD;
+}
+.button{
+    -fx-font-size: 25;
+    -fx-background-color: transparent;
+}
+.menu-item{
+     -fx-font-size: 20;
+     -fx-padding: 0 60 0 0;
+}
+.text-field{
+    -fx-font-size: 20;
+}
+
+
+/*ändrar bakgrundsfärg på hela sidan*/
+.root{
+    -fx-background-color: "lavender";
+}
