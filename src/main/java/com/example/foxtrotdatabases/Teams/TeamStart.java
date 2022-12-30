@@ -1,8 +1,8 @@
 package com.example.foxtrotdatabases.Teams;
 
+import java.sql.SQLException;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
-import java.sql.SQLException;
 
 public class TeamStart {
 

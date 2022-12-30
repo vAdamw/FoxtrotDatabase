@@ -21,6 +21,9 @@ import javafx.scene.text.Text;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ *  Author: Bastian
+ */
 public class MatchesMenu {
     /*-----------------------------------------------------------------------------------------------------------------------
      * Variabler
@@ -211,21 +214,24 @@ public class MatchesMenu {
                     }
                     //Upptaderar matchen
                     matchesController.updateTeamMatch(teamMatches);
+                    borderPane.setCenter(updateTeamMatch());
                     break;
                 case 1:
                     //Ändrar konstruktor beroende på om poäng är inskriven
                     if (scoreContender1.getText().length() > 0 && scoreContender2.getText().length() > 0) {
-                        playerMatches = new PlayerMatches(matchId, Integer.parseInt(contender1Id.getText()),
-                                Integer.parseInt(contender2Id.getText()), date.getText(), Integer.parseInt(scoreContender1.getText()),
-                                Integer.parseInt(scoreContender2.getText()), Integer.parseInt(gameId.getText()));
+                        playerMatches = new PlayerMatches(matchId, textFieldToInt(contender1Id), textFieldToInt(contender2Id),
+                                date.getText(), textFieldToInt(scoreContender1), textFieldToInt(scoreContender2),
+                                textFieldToInt(gameId));
                     } else {
-                        playerMatches = new PlayerMatches(matchId, Integer.parseInt(contender1Id.getText()),
-                                Integer.parseInt(contender2Id.getText()), date.getText(), Integer.parseInt(gameId.getText()));
+                        playerMatches = new PlayerMatches(matchId, textFieldToInt(contender1Id),
+                                textFieldToInt(contender2Id), date.getText(), textFieldToInt(gameId));
                     }
                     //Uppdaterar matchen
                     matchesController.updatePlayerMatch(playerMatches);
+                    borderPane.setCenter(updatePlayerMatch());
                     break;
                 default:
+                    break;
             }
 
         } catch (Exception e) {
@@ -435,7 +441,7 @@ public class MatchesMenu {
         finished.setCellValueFactory(new PropertyValueFactory<>("finished"));
 
         tableView.setItems(allMatches);
-        tableView.getColumns().addAll(matchId, team1Name, scoreTeam1, team2Name, scoreTeam2, matchDate, finished);
+        tableView.getColumns().addAll(matchId, team1Name, scoreTeam1, scoreTeam2, team2Name, matchDate, finished);
         tableView.setEditable(true);
 
         vBox.getChildren().addAll(tableView);
@@ -485,7 +491,6 @@ public class MatchesMenu {
         button.setPadding(new Insets(20, 60, 20, 0));
         button.setOnAction(e -> textFieldToUpdateMatch(matchToUpdate, textFieldTeam1Id, textFieldTeam2Id, textFieldDate,
                 textFieldScoreTeam1, textFieldScoreTeam2, textFieldGameId));
-        //matches = new Matches(textFieldTeam1Id.getText(), team2Id, matchDate, scoreTeam1, scoreTeam2, gameId);
 
         VBox vBox = new VBox(helpTableVBox, text1, textFieldTeam1Id, text2, textFieldTeam2Id, text3, textFieldDate, text4, textFieldScoreTeam1,
                 text5, textFieldScoreTeam2, text6, textFieldGameId, button);
@@ -553,7 +558,7 @@ public class MatchesMenu {
         finished.setCellValueFactory(new PropertyValueFactory<>("finished"));
 
         tableView.setItems(allMatches);
-        tableView.getColumns().addAll(matchId,player1Nickname, scorePlayer1, player2Nickname, scorePlayer2, matchDate, finished);
+        tableView.getColumns().addAll(matchId,player1Nickname, scorePlayer1, scorePlayer2, player2Nickname, matchDate, finished);
         tableView.setEditable(true);
 
         vBox.getChildren().addAll(tableView);

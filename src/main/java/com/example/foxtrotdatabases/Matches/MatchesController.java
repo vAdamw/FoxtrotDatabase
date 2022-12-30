@@ -4,6 +4,9 @@ package com.example.foxtrotdatabases.Matches;
 import javax.persistence.*;
 import java.util.List;
 
+/**
+ *   Author: Bastian
+ */
 public class MatchesController{
     public static EntityManagerFactory ENTITY_MANAGER_FACTORY = Persistence.createEntityManagerFactory("hibernate");
 

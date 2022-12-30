@@ -8,6 +8,9 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
+/**
+ *   Author: Bastian
+ */
 public class AlertBox {
     //En metod som skapar upp en notisruta med meddelande som inparameter i metoden
     public static void showAlertBox(String message){
