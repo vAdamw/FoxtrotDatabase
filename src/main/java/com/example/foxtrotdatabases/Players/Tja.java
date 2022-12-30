@@ -17,10 +17,5 @@ public class Tja {
         playersMenu.input();
 
 
-        /*PlayerController playerController = new PlayerController();
-        Players players = new Players(8,"Maria","Svensson", "Marre", "Hallgatan 4", 54397,"Sverige","maria@email.com",2);
-        playerController.addPlayer(players);*/
-
-
     }
 }
