@@ -1,5 +1,7 @@
 package com.example.foxtrotdatabases.Players;
 
+import com.example.foxtrotdatabases.Teams.Teams;
+
 import javax.persistence.*;
 
 @Entity
@@ -26,6 +28,22 @@ public class Players {
     private String email;
     @Column(name = "team_id")
     private int teamID;
+
+
+    @ManyToOne
+    @JoinColumn(name = "team_id", insertable = false, updatable = false)
+    private Teams team; //mapped by?
+
+    /*@OneToOne
+    @JoinColumn(name = "game_id",insertable = false,updatable = false)
+    private Games game;*/
+
+    @Transient
+    int thePlayerToRemove;
+
+    @Transient
+    int thePlayerToUpdate;
+
 
     public Players() {
     }
@@ -54,6 +72,30 @@ public class Players {
         this.country = country;
         this.email = email;
         this.teamID = teamID;
+    }
+
+    public Teams getTeam() {
+        return team;
+    }
+
+    public void setTeam(Teams team) {
+        this.team = team;
+    }
+
+    public int getThePlayerToRemove() {
+        return thePlayerToRemove;
+    }
+
+    public void setThePlayerToRemove(int thePlayerToRemove) {
+        this.thePlayerToRemove = thePlayerToRemove;
+    }
+
+    public int getThePlayerToUpdate() {
+        return thePlayerToUpdate;
+    }
+
+    public void setThePlayerToUpdate(int thePlayerToUpdate) {
+        this.thePlayerToUpdate = thePlayerToUpdate;
     }
 
     public int getPlayerID() {

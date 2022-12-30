@@ -107,43 +107,6 @@ public class PlayerController {
     }
 
 
-    public boolean otherDeletePlayer(int thePlayerID) {
-        EntityManager entityManager = ENTITY_MANAGER_FACTORY.createEntityManager();
-        EntityTransaction transaction = null;
-        boolean isSuccess = true;
-
-        try {
-            transaction = entityManager.getTransaction();
-            transaction.begin();
-            Query deletePlayerQuery = entityManager.createNativeQuery("DELETE from players WHERE player_id = "+thePlayerID);
-            deletePlayerQuery.executeUpdate();
-            entityManager.flush();
-            transaction.commit();
-        } catch (Exception e) {
-            if(transaction != null) {
-                transaction.rollback();
-            }
-            e.printStackTrace();
-            isSuccess = false;
-
-        } finally {
-            entityManager.close();
-        }
-        return isSuccess;
-    }
-
-    /*public Players otherUpdatePlayer(Players thePlayer) {
-        EntityManager entityManager = ENTITY_MANAGER_FACTORY.createEntityManager();
-        EntityTransaction transaction = null;
-
-        try {
-            transaction = entityManager.getTransaction();
-            transaction.begin();
-
-
-
-    };*/
-
     public boolean updatePlayer(Players thePlayer) {
         EntityManager entityManager = ENTITY_MANAGER_FACTORY.createEntityManager();
         EntityTransaction transaction = null;

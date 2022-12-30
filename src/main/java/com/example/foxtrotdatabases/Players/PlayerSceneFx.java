@@ -2,7 +2,6 @@ package com.example.foxtrotdatabases.Players;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -11,13 +10,9 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-import javafx.scene.text.Text;
-import javafx.scene.text.TextAlignment;
 
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
-import javax.persistence.Table;
-import javax.persistence.criteria.CriteriaBuilder;
 
 
 public class PlayerSceneFx {
@@ -26,32 +21,55 @@ public class PlayerSceneFx {
     TextField firstNameInput;
     TextField lastNameInput;
     TextField nickNameInput;
+
+    TextField updatePlayerID;
+    TextField updateFirstName;
+    TextField updateLastName;
+    TextField updateNickName;
+    TextField updateStreetAddress;
+    TextField updatePostalCode;
+    TextField updateCountry;
+    TextField updateEmail;
+    TextField updateTeamID;
+
+    TextField idInputField;
+
     BorderPane playerBorderPane;
+
 
     TableView playersTable;
 
+    Players thePlayerToUpdate;
+
+
+    PlayerController playerController;
+
+    ObservableList<Players> observablePlayers;
 
 
     public PlayerSceneFx() {
     }
 
     public Scene addToPlayerScene(Button button) {
-
+        //Skapar vår enda scene, med en borderpane, alla förändringar sker i mitten av borderpanen via setCenter.
         playerBorderPane = new BorderPane();
 
+        //Här lägger vi till våra huvudknappar
         Button addPlayerButton = new Button("Add player");
         addPlayerButton.setOnAction(e -> playerBorderPane.setCenter(this.inputMenu()));
         Button removePlayerButton = new Button("Remove player");
-        //removePlayerButton.setOnAction(e -> );
+        removePlayerButton.setOnAction(e -> deleteButtonAction());
         Button updatePlayerButton = new Button("Update player");
-        //updatePlayerButton.setOnAction(e ->);
+        updatePlayerButton.setOnAction(e -> updatePlayerButtonAction());
         Button backToTableButton = new Button("Back to table");
         backToTableButton.setOnAction(e -> backToTableButtonAction());
 
-        HBox topMenu = new HBox(addPlayerButton, removePlayerButton, updatePlayerButton,backToTableButton);
+        //Skapar två HBoxar och en VBox att lägga innehåll i, lägger Back-knappen i nedersta HBoxen och de lokala i översta.
+        HBox topMenu = new HBox(addPlayerButton, removePlayerButton, updatePlayerButton, backToTableButton);
         VBox centerMenu = new VBox(createPlayersTable());
         HBox buttonBox = new HBox(button);
 
+        //Lägger in HBoxarna och VBoxarna i Borderpanen.
         playerBorderPane.setTop(topMenu);
         playerBorderPane.setCenter(centerMenu);
         playerBorderPane.setBottom(buttonBox);
@@ -74,16 +92,16 @@ public class PlayerSceneFx {
         return scene;
     }
 
+    //Ej säker på att ObservableList var nödvändig i detta fall, men det funkar?
     public ObservableList<Players> getPlayers() {
-        ObservableList<Players> observablePlayers = FXCollections.observableArrayList();
-        PlayerController playerController = new PlayerController();
+        observablePlayers = FXCollections.observableArrayList();
+        playerController = new PlayerController();
         observablePlayers.addAll(playerController.getAllPlayers());
 
         return observablePlayers;
     }
 
-    //public Scene addPlayerScene() {}
-
+    //Skapar upp tabellen
     public TableView<Players> createPlayersTable() {
 
         playersTable = new TableView<>();
@@ -133,6 +151,7 @@ public class PlayerSceneFx {
         return playersTable;
     }
 
+    //Skapar upp en VBox med Textfields för att lägga till ny spelares för-, efter- och smeknamn.
     public VBox inputMenu() {
 
         firstNameInput = new TextField();
@@ -154,15 +173,16 @@ public class PlayerSceneFx {
         VBox input = new VBox();
         input.getChildren().addAll(firstNameInput, lastNameInput, nickNameInput, add);
         input.setSpacing(10);
-        input.setPadding(new Insets(10,10,10,10));
+        input.setPadding(new Insets(10, 10, 10, 10));
         input.setAlignment(Pos.CENTER);
 
         return input;
     }
 
+    //Knappfunktion för att lägga till ny spelare,
     public void addButtonAction() {
 
-        PlayerController playerController = new PlayerController();
+        playerController = new PlayerController();
         Players newPlayer = new Players();
 
         newPlayer.setFirstName(firstNameInput.getText());
@@ -176,31 +196,87 @@ public class PlayerSceneFx {
         playerController.addPlayer(newPlayer);
     }
 
+    //Knappfunktion för back-to-table-knappen, kallar på metoden createPlayersTable i mitten av borderpanen
     public void backToTableButtonAction() {
         playerBorderPane.setCenter(createPlayersTable());
     }
 
+    //Knappfunktion för delete-knappen, kallar på metoden idinputfordelete i mitten av borderpanen
+    public void deleteButtonAction() { playerBorderPane.setCenter(idInputForDelete()); }
 
-    //FIXA DELETE- OCH UPDATEFUNKTIONALITET.
-    //KOLLA ATT TABELLEN ÄR KOPPLAD TILL MYSQL.
-    //FIXA UPDATE-METODEN I PLAYERSMENU.
+    public void updatePlayerButtonAction() { playerBorderPane.setCenter(updatePlayerBox()); }
 
-   /* public void deletePlayerButtonAction() {
-        PlayerController playerController = new PlayerController();
-        playerController.deletePlayer();
-    }*/
 
-    public void updatePlayerButtonAction() {
+    //Metoden ifråga, skapar upp ett Textfield för input av ID, parsear sen textsträngen till en
+    // int och skickar till deletePlayer-metoden i Playercontroller
+    public VBox idInputForDelete() {
+        Button deleteForRealButton = new Button("Delete player");
+        idInputField = new TextField();
+        idInputField.setPromptText("Please give the ID of the player you'd like to remove");
 
+
+        VBox idVbox = new VBox();
+        idVbox.getChildren().addAll(idInputField, deleteForRealButton);
+
+        deleteForRealButton.setOnAction(e -> playerController.deletePlayer(Integer.parseInt(idInputField.getText())));
+
+        return idVbox;
     }
 
 
 
-    /*Players ska registreras med firstname, lastname och nickname -
-      gör registreringsfönster.
+    public VBox updatePlayerBox() {
 
-      "Add Player"
-      "Remove Player"
-      "Edit Player"*/
+        updatePlayerID = new TextField();
+        updatePlayerID.setPromptText("Please give the ID of the player you would like to edit");
+        updateFirstName = new TextField();
+        updateFirstName.setPromptText("Update first name");
+        updateLastName = new TextField();
+        updateLastName.setPromptText("Update last name");
+        updateNickName = new TextField();
+        updateNickName.setPromptText("Update nickname");
+        updateStreetAddress = new TextField();
+        updateStreetAddress.setPromptText("Update street address");
+        updatePostalCode = new TextField();
+        updatePostalCode.setPromptText("Update postal code");
+        //Textfield updateCity = new TextField();
+        //updateCity.setPromptText("Update city");
+        updateCountry = new TextField();
+        updateCountry.setPromptText("Update country");
+        updateEmail = new TextField();
+        updateEmail.setPromptText("Update email");
+        updateTeamID = new TextField();
+        updateTeamID.setPromptText("Update team ID");
+
+
+        Button updateFinalPlayerButton = new Button("Update player");
+        updateFinalPlayerButton.setOnAction(e -> updatePlayerAction());
+
+        VBox updateBox = new VBox();
+        updateBox.getChildren().addAll(updatePlayerID, updateFirstName, updateLastName, updateNickName,
+                updateStreetAddress, updatePostalCode, updateCountry, updateEmail, updateTeamID, updateFinalPlayerButton);
+
+
+        return updateBox;
+    }
+
+    public void updatePlayerAction() {
+
+        PlayerController playerController = new PlayerController();
+        thePlayerToUpdate = new Players();
+
+        thePlayerToUpdate.setPlayerID(Integer.parseInt(updatePlayerID.getText()));
+        thePlayerToUpdate.setFirstName(updateFirstName.getText());
+        thePlayerToUpdate.setLastName(updateLastName.getText());
+        thePlayerToUpdate.setNickname(updateNickName.getText());
+        thePlayerToUpdate.setStreetAddress(updateStreetAddress.getText());
+        thePlayerToUpdate.setPostalCode(Integer.parseInt(updatePostalCode.getText()));
+        thePlayerToUpdate.setCountry(updateCountry.getText());
+        thePlayerToUpdate.setEmail(updateEmail.getText());
+        thePlayerToUpdate.setTeamID(Integer.parseInt(updateTeamID.getText()));
+
+        playerController.updatePlayer(thePlayerToUpdate);
+
+    }
 
 }
