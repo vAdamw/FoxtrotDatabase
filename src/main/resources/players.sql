@@ -10,6 +10,7 @@ email VARCHAR(45),
 team_id INT
 );
 
+SELECT * FROM players;
 
 DROP TABLE players;
 TRUNCATE table players;

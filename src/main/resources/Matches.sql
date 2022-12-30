@@ -1,10 +1,10 @@
---Team matches
+#Team matches
 
 USE tournament;
 -- SET SQL_SAFE_UPDATES = 0;
 DROP TABLE team_matches;
 
---Creating a table with match_id as primary key. Creating connections to other tables through team1_id, team2_id and game_id
+#Creating a table with match_id as primary key. Creating connections to other tables through team1_id, team2_id and game_id
 CREATE TABLE team_matches(
                              match_id INT AUTO_INCREMENT,
                              team1_id INT,
@@ -20,11 +20,11 @@ CREATE TABLE team_matches(
                              FOREIGN KEY (game_id) REFERENCES games(game_id)
 );
 
---Adding values to the table
+#Adding values to the table
 INSERT INTO team_matches (match_id, team1_id, team2_id, match_date, score_team1, score_team2, game_id, finished)VALUES
 (3,1,2,'01.01.01',100,200,1, true);
 
---Select everyting
+#Select everyting
 SELECT * FROM team_matches;
 
 
@@ -34,7 +34,7 @@ USE tournament;
 -- SET SQL_SAFE_UPDATES = 0;
 DROP TABLE player_matches;
 
---Creating a table with match_id as primary key. Creating connections to other tables through team1_id, team2_id and game_id*/
+#Creating a table with match_id as primary key. Creating connections to other tables through team1_id, team2_id and game_id*/
 CREATE TABLE player_matches(
                                match_id INT AUTO_INCREMENT,
                                player1_id INT,
@@ -50,10 +50,10 @@ CREATE TABLE player_matches(
                                FOREIGN KEY (game_id) REFERENCES games(game_id)
 );
 
---Adding values to the table
+#Adding values to the table
 INSERT INTO player_matches (match_id, player1_id, player2_id, match_date, score_player1, score_player2, game_id)VALUES
 (1,1,2,'01.01.01',100,200,1);
 
---Select everyting
+#Select everyting
 SELECT * FROM player_matches;
 

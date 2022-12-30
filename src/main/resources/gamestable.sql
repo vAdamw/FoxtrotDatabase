@@ -32,4 +32,4 @@ SELECT game_name FROM tournament.games;
 #Shows a image of only game_id.
 SELECT game_id FROM tournament.games;
 
-DESCRIBE matches;
+DESCRIBE games;

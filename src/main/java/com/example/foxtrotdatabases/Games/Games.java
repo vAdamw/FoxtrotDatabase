@@ -2,7 +2,7 @@ package com.example.foxtrotdatabases.Games;
 
 import javax.persistence.*;
 @Entity
-@Table(name = "Games")
+@Table(name = "games")
 public class Games{
     @Id
     @Column(name ="game_id")
