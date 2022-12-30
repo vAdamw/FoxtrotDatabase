@@ -114,9 +114,9 @@ public class Start extends Application {
         //Ger samma information för font m.m. som framsidan hade
         try {
             sceneForPlayer.getStylesheets().add(getClass().getClassLoader().getResource("PlayerStyle.css").toExternalForm());
-            sceneForTeam.getStylesheets().add(getClass().getClassLoader().getResource("Application.css").toExternalForm());
-            sceneForGame.getStylesheets().add(getClass().getClassLoader().getResource("GamesStyle.css").toExternalForm());
-            //sceneForMatches.getStylesheets().add(getClass().getClassLoader().getResource("Application.css").toExternalForm());
+            //sceneForTeam.getStylesheets().add(getClass().getClassLoader().getResource("Application.css").toExternalForm());
+            //sceneForGame.getStylesheets().add(getClass().getClassLoader().getResource("GamesStyle.css").toExternalForm());
+            sceneForMatches.getStylesheets().add(getClass().getClassLoader().getResource("Application.css").toExternalForm());
         }catch(Exception e){
             e.printStackTrace();
         }

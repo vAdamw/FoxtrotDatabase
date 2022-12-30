@@ -6,7 +6,8 @@ import java.util.Scanner;
 public class TeamMenu {
 
     TeamController teamController;
-
+    Scanner scanner = new Scanner(System.in);
+    int teamMenuChoice = 1;
     public TeamMenu(TeamController theTeamController) {
         this.teamController = theTeamController;
     }
@@ -18,30 +19,41 @@ public class TeamMenu {
         System.out.println("1 : Lägg till lag ");
         System.out.println("2 : Ta bort ett lag ");
         System.out.println("3 : Uppdatera ett lag ");
+        System.out.println("4 : Avsluta ");
         System.out.print("Ditt val: ");
         teamMenuInput();
     }
 
     public void teamMenuInput() {
 
-        Scanner scanner = new Scanner(System.in);
-        int teamMenyChoice = scanner.nextInt();
+        while (teamMenuChoice != 4) {
+            try {
+                teamMenuChoice = scanner.nextInt();
 
-        switch (teamMenyChoice) {
-            case 0:
-                showAllTeam();
-                break;
-            case 1:
-                addTeam();
-                break;
-            case 2:
-                deleteTeam();
-                break;
-            case 3:
-                updateTeam();
-                break;
-            default:
-                System.out.println("fel inmatning");
+                switch (teamMenuChoice) {
+                    case 0:
+                        showAllTeam();
+                        break;
+                    case 1:
+                        addTeam();
+                        break;
+                    case 2:
+                        deleteTeam();
+                        break;
+                    case 3:
+                        updateTeam();
+                        break;
+                    case 4:
+                        System.out.print("Avslutar..");
+                        System.exit(0);
+                    default:
+                        System.out.println("fel inmatning");
+                }
+            } catch (Exception e) {
+                System.out.print("Använd endast siffror!\n");
+                scanner.nextLine();
+            }
+            showTeamMenu();
         }
     }
 
@@ -60,7 +72,7 @@ public class TeamMenu {
         System.out.print("Ange lagets namn: ");
         String teamName = scanner.nextLine();
 
-        System.out.print("Age lagets game id: ");
+        System.out.print("Ange lagets game id: ");
         int gameId = scanner.nextInt();
 
         Teams theTeamsToAdd = new Teams(teamName, gameId);
