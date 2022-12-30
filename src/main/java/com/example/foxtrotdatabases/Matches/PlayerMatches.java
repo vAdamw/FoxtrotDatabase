@@ -4,6 +4,9 @@ import com.example.foxtrotdatabases.Players.Players;
 
 import javax.persistence.*;
 
+/**
+ *  Author: Bastian
+ */
 @Entity
 @Table(name="player_matches")
 public class PlayerMatches {

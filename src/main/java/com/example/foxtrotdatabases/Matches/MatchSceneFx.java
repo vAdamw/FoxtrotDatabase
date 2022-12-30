@@ -10,7 +10,15 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 
 
+/**
+ *  Author: Bastian
+ */
+
 public class MatchSceneFx {
+
+    /*-------------------------------------------------------------------------------------------------------------
+     * Variabler
+     -------------------------------------------------------------------------------------------------------------*/
     BorderPane borderPane = new BorderPane();
     MatchesMenu matchesMenu = new MatchesMenu(borderPane);
     Start start = new Start();
@@ -18,8 +26,17 @@ public class MatchSceneFx {
     Button playerButton = start.createButtonForMenu("Player Matches");
     Button backToStart;
 
+
+    /*-----------------------------------------------------------------------------------------------------------
+     * Konstruktor
+     ------------------------------------------------------------------------------------------------------------*/
     public MatchSceneFx() {
     }
+
+
+    /*---------------------------------------------------------------------------------------------------------
+     * Metoder
+     ----------------------------------------------------------------------------------------------------------*/
 
     public Scene addToMatchScene(Button button) {
         this.backToStart = button;
