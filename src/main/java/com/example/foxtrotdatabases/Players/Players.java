@@ -29,11 +29,11 @@ public class Players {
     @Column(name = "team_id")
     private int teamID;
 
-
+/*
     @ManyToOne
     @JoinColumn(name = "team_id", insertable = false, updatable = false)
     private Teams team; //mapped by?
-
+*/
     /*@OneToOne
     @JoinColumn(name = "game_id",insertable = false,updatable = false)
     private Games game;*/
@@ -73,13 +73,11 @@ public class Players {
         this.email = email;
         this.teamID = teamID;
     }
-
-    public Teams getTeam() {
-        return team;
-    }
-
-    public void setTeam(Teams team) {
-        this.team = team;
+    public Players(String firstName, String lastName, String nickname, int teamID) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.nickname = nickname;
+        this.teamID = teamID;
     }
 
     public int getThePlayerToRemove() {

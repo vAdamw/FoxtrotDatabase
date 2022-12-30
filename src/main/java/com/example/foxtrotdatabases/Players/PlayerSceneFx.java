@@ -21,6 +21,7 @@ public class PlayerSceneFx {
     TextField firstNameInput;
     TextField lastNameInput;
     TextField nickNameInput;
+    TextField teamIdInput;
 
     TextField updatePlayerID;
     TextField updateFirstName;
@@ -166,12 +167,16 @@ public class PlayerSceneFx {
         nickNameInput.setPromptText("Nickname");
         nickNameInput.setMinWidth(100);
 
+        teamIdInput = new TextField();
+        teamIdInput.setPromptText("Team id");
+        teamIdInput.setMinWidth(100);
+
         Button add = new Button("Add");
         add.setAlignment(Pos.BOTTOM_CENTER);
         add.setOnAction(e -> addButtonAction());
 
         VBox input = new VBox();
-        input.getChildren().addAll(firstNameInput, lastNameInput, nickNameInput, add);
+        input.getChildren().addAll(firstNameInput, lastNameInput, nickNameInput, teamIdInput, add);
         input.setSpacing(10);
         input.setPadding(new Insets(10, 10, 10, 10));
         input.setAlignment(Pos.CENTER);
@@ -185,9 +190,11 @@ public class PlayerSceneFx {
         playerController = new PlayerController();
         Players newPlayer = new Players();
 
+
         newPlayer.setFirstName(firstNameInput.getText());
         newPlayer.setLastName(lastNameInput.getText());
         newPlayer.setNickname(nickNameInput.getText());
+        newPlayer.setTeamID(Integer.parseInt(teamIdInput.getText()));
         createPlayersTable().getItems();
         firstNameInput.clear();
         lastNameInput.clear();

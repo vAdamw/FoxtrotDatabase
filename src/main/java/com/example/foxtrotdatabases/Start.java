@@ -98,11 +98,11 @@ public class Start extends Application {
     public void createOtherScenes(){
         //Hanterar scene för de olika menyvalen i en metod från en annan klass,
         //i metoden behöver man lägga till en knapp som tar en tillbaka till startrutan
-        PlayerSceneFx playerSceneFx = new PlayerSceneFx();
-        sceneForPlayer = playerSceneFx.addToPlayerScene(createBackToStartButton());
-
         TeamSceneFx teamSceneFx = new TeamSceneFx();
         sceneForTeam = teamSceneFx.addToTeamScene(createBackToStartButton());
+
+        PlayerSceneFx playerSceneFx = new PlayerSceneFx();
+        sceneForPlayer = playerSceneFx.addToPlayerScene(createBackToStartButton());
 
         GameSceneFx gameSceneFx = new GameSceneFx();
         sceneForGame = gameSceneFx.addToGamesScene(createBackToStartButton());
