@@ -4,6 +4,9 @@ import com.example.foxtrotdatabases.Teams.Teams;
 
 import javax.persistence.*;
 
+/**
+ *  Author: Bastian
+ */
 @Entity
 @Table(name = "team_matches")
 public class TeamMatches{
