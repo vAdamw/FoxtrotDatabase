@@ -7,6 +7,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.*;
 
 @Entity
+
+//tabell
 @Table(name = "teams")
 
 public class Teams {
@@ -19,6 +21,7 @@ public class Teams {
     @Column(name = "game_id")
     private int gameId;
 
+    //Konstruktor
     public Teams() {
     }
 
@@ -33,6 +36,7 @@ public class Teams {
         this.gameId = gameId;
     }
 
+    //Getters och setters
     public int getTeamId() {
         return teamId;
     }
